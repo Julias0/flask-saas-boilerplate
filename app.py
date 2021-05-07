@@ -4,12 +4,15 @@ from flask_restful import Api
 from flask_migrate import Migrate
 from flask_cors import CORS
 import os
-
 from mail import mail
+
+from resources.check import CheckResource
 
 api = Api()
 migrate = Migrate()
 cors = CORS()
+
+api.add_resource(CheckResource)
 
 def create_app():
     app = Flask(__name__)

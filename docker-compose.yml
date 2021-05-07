@@ -31,3 +31,8 @@ services:
       POSTGRES_USER: testusr
       POSTGRES_PASSWORD: password
       POSTGRES_DB: testdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgresql://testusr:password@db/testdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
