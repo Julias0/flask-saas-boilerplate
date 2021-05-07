@@ -1,0 +1,33 @@
+version: "3.3"
+services:
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    links:
+      - db:db
+    volumes:
+      - .:/app
+    environment:
+      FLASK_DATABASE_URL: postgresql+psycopg2://testusr:password@db/testdb
+      PORT: 8080
+      APP_URL: http://localhost:4200
+      SECRET_KEY: MaaMatiManush
+      SENDGRID_API_KEY: null
+      MAIL_DEFAULT_SENDER: null 
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: testusr
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdb
