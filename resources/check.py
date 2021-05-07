@@ -1,7 +1,7 @@
 from flask_restful import Resource
 
 class CheckResource(Resource):
-    def get():
+    def get(self):
         return {
                 "success": True
                 }

@@ -12,7 +12,7 @@ api = Api()
 migrate = Migrate()
 cors = CORS()
 
-api.add_resource(CheckResource)
+api.add_resource(CheckResource, '/check')
 
 def create_app():
     app = Flask(__name__)
